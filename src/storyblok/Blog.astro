@@ -6,11 +6,20 @@
 	const { blok } = Astro.props
     const content = renderRichText(blok.content)
     const image = (blok.image)
+    
+    import { useStoryblokApi } from '@storyblok/astro'
+
+    const storyblokApi = useStoryblokApi();
+
+    const { data } = await storyblokApi.get('cdn/stories/articles/blogpost2')
+    const posts = data.story.content.content.type;
 ---
 
 <article {...storyblokEditable(blok)}>
     <h2 style="font-size: 2rem;">{blok.title}</h2>
-    <Fragment set:img={image} />
+    <img src="https://a.storyblok.com/f/196819/1366x1366/c73d6680d0/chaseright_a_retrowave_cyborg_wearing_a_hoody_that_has_a_small__329b231e-9c18-432a-a090-f039165eab24.png/m/100x0" alt="">
     <p style="font-size: 1.2rem; font-style:oblique;">{blok.description}</p>
     <Fragment set:html={content} />
+    <br>
+    <p>{posts}</p>
   </article>
