@@ -28,3 +28,4 @@ localhost.pem
 
 BlogPost.astro
 BlogPostList.astro
+[...slug].astro
